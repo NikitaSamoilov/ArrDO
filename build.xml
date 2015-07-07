@@ -13,6 +13,7 @@
 	<target name="make.dir" description="Make a dir" depends="path">
 		<echo>Make a directory</echo>
 		<mkdir dir="${dstDir}"></mkdir>
+		<mkdir dir="${dstDir}\build"></mkdir>
 	</target>
 
 
@@ -26,7 +27,7 @@
 
 	<target name="jar" depends="compile">
 		<echo>Make jar file</echo>
-		<jar destfile="arrdo.jar">
+		<jar destfile="${dstDir}\build\arrdo.jar">
 			<fileset dir="${dstDir}">
 				<include name="**/*.class"></include>
 				<exclude name="**/CVS"></exclude>

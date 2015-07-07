@@ -1,0 +1,36 @@
+<project name="ArrDO" default="all" basedir=".">
+	<target name="path">
+		<property name="srcDir" value="src" />
+		<property name="dstDir" value="Release" />
+		<!--<property name="prjDir" value="D:\Projects\myProject" />-->
+	</target>
+
+	<target name="clean.jar" depends="path">
+		<echo>Delete all *.jar files</echo>
+		<delete file="${dstDir}\*.jar" />
+	</target>
+
+	<target name="make.dir" description="Make a dir" depends="path">
+		<echo>Make a directory</echo>
+		<mkdir dir="${dstDir}"></mkdir>
+	</target>
+
+
+	<target name="compile" depends="path,make.dir">
+		<echo>Compile common java files</echo>
+		<javac srcdir="${srcDir}" destdir="${dstDir}" deprecation="off">
+			<include name="*.java" />
+		</javac>
+	</target>
+
+
+	<target name="jar" depends="compile">
+		<echo>Make jar file</echo>
+		<jar destfile="arrdo.jar">
+			<fileset dir="${dstDir}">
+				<include name="**/*.class"></include>
+				<exclude name="**/CVS"></exclude>
+			</fileset>
+		</jar>
+	</target>
+</project>
